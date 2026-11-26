@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Gift for Nadia</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Opening screen -->
+    <div id="welcome">
+        <h1>Merry Christmas Nadia!</h1>
+        <p>A little something made with love ❤️</p>
+        <button id="openGift">🎁 OPEN YOUR GIFT 🎁</button>
+    </div>
+
+    <!-- Main website -->
+    <div id="scene"></div>
+
+    <div class="message">
+        <h1>Merry Christmas Nadia!</h1>
+        <p>Drag to explore your little gift ❤️</p>
+    </div>
+
+    <!-- Voice message -->
+    <audio id="voiceMessage" loop>
+        <source src="./assets/nadia-message.mp3" type="audio/mpeg">
+    </audio>
+
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
