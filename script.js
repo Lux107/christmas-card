@@ -44,7 +44,7 @@ scene.add(light);
 // VIDEO TEXTURE
 const video = document.createElement('video');
 
-video.src = './assets/texture.webm';
+video.src = new URL('./assets/texture.webm', import.meta.url).href;
 video.loop = true;
 video.muted = true;
 video.playsInline = true;
@@ -53,7 +53,6 @@ video.autoplay = true;
 video.addEventListener('loadeddata', () => {
     const texture = new THREE.VideoTexture(video);
     texture.colorSpace = THREE.SRGBColorSpace;
-    //texture.rotation = 30;
     texture.flipY = false;
     texture.needsUpdate = true;
 
@@ -61,7 +60,7 @@ video.addEventListener('loadeddata', () => {
     const loader = new GLTFLoader();
 
     loader.load(
-        './assets/Card.glb',
+        new URL('./assets/Card.glb', import.meta.url).href,
 
         (gltf) => {
             const card = gltf.scene;
@@ -132,15 +131,12 @@ window.addEventListener('resize', () => {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
-const voiceMessage = document.getElementById('voiceMessage');
 
+// AUDIO
+const voiceMessage = document.getElementById('voiceMessage');
 voiceMessage.volume = 0.2;
 
-voiceMessage.play().catch(error => {
-    console.log('Browser requires user interaction before playing audio.');
-});
-
-
+// OPENING SCREEN
 const welcomeScreen = document.getElementById('welcome');
 const openGiftButton = document.getElementById('openGift');
 
@@ -149,22 +145,18 @@ openGiftButton.addEventListener('click', async () => {
     document.body.classList.add('unlocked');
     welcomeScreen.classList.add('hidden');
 
+    // Start animated video texture
+    try {
+        await video.play();
+    } catch (error) {
+        console.log('Video playback error:', error);
+    }
+
+    // Start voice message
     try {
         await voiceMessage.play();
     } catch (error) {
         console.error('Audio playback error:', error);
     }
 
-});
-document.getElementById('openGift').addEventListener('click', async () => {
-    document.body.classList.add('unlocked');
-    document.getElementById('welcome').classList.add('hidden');
-
-    const audio = document.getElementById('voiceMessage');
-
-    try {
-        await audio.play();
-    } catch (error) {
-        console.error('Audio error:', error);
-    }
 });
