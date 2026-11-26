@@ -44,7 +44,7 @@ scene.add(light);
 // VIDEO TEXTURE
 const video = document.createElement('video');
 
-video.src = new URL('./assets/texture.webm', import.meta.url).href;
+video.src = new URL('./assets/Texture.webm', import.meta.url).href;
 video.loop = true;
 video.muted = true;
 video.playsInline = true;
@@ -160,3 +160,4 @@ openGiftButton.addEventListener('click', async () => {
     }
 
 });
+video.src
